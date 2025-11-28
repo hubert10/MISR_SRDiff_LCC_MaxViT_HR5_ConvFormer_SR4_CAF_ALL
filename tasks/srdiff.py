@@ -96,17 +96,6 @@ class SRDiffTrainer(Trainer):
         closest_idx = batch["closest_idx"]  # torch.Size([4, 2, 3, 160, 160])
         sc_img_hr = img_hr[:, :4, :, :]
 
-        print("img_hr:", img_hr.shape)
-        print("dem_elev:", dem_elev.shape)
-
-        print("img_lr:", img_lr.shape)
-        print("img_lr_up:", img_lr_up.shape)
-        print("labels:", labels.shape)
-        print("labels_sr:", labels_sr.shape)
-
-        print("Min:", dates.min().item())
-        print("Max:", dates.max().item())
-
         # call gaussian diffusion model for SR-prediction this should also
         # return the SR-SITS images alongside the diffusion losses
         losses, _, _, img_sr = self.model.gaussian(
@@ -121,9 +110,6 @@ class SRDiffTrainer(Trainer):
 
         # for classification branches
         cls_sits, multi_outputs, aer_outputs = self.model(img, img_sr, dates)
-
-        print("labels:", labels.shape)
-        print("aer_outputs:", aer_outputs.shape)
 
         labels_sr = torch.argmax(labels_sr, dim=1) if labels_sr.ndim == 4 else labels_sr
         labels = torch.argmax(labels, dim=1) if labels.ndim == 4 else labels
@@ -145,12 +131,8 @@ class SRDiffTrainer(Trainer):
             + self.loss_aux_sat_weight * aux_loss3
         )
 
-        print("labels:", labels.shape)
-        print("aer_outputs:", aer_outputs.shape)
-
         # Loss for AER branch
         loss_aer = self.criterion_aer(aer_outputs, labels.long())
-
         # The CE loss for the SITS classification branch is done at 1.6m GSD
         # that combines the loss from the SR-diffusion model and the SITS
         #  segmentation branch
@@ -192,9 +174,6 @@ class SRDiffTrainer(Trainer):
         proba = torch.softmax(aer_outputs, dim=1)
         preds = torch.argmax(proba, dim=1)
         labels = labels.argmax(dim=1)
-
-        print("preds:", preds.shape)
-        print("labels:", labels.shape)
 
         # Loop over batch
         for b in range(img_sr.shape[0]):

@@ -10,7 +10,6 @@ from losses.srdiff_loss import (
     grad_pixel_wise_closest_sr_sits_aer_loss,
 )
 
-
 class HighResNetLTAETrainer(Trainer):
     def build_model(self):
         with open("./tasks/config_hrnet.json", "r") as read_file:

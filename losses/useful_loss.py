@@ -102,5 +102,4 @@ if __name__ == "__main__":
     # print(targets)
     model = EdgeLoss()
     loss = model.compute_edge_loss(logits, targets)
-
     print(loss)

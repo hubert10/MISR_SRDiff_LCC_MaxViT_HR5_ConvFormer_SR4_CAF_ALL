@@ -810,19 +810,10 @@ class TConvFormer(nn.Module):
 
         Wh, Ww = x_sp.size(-2), x_sp.size(-1)
 
-        print("x_sp:", x_sp.shape)
-
         x = x_sp.flatten(-2).transpose(-2, -1)
 
         # include time embedding
         time_embed =  self.positional_encoder(batch_positions) # torch.Size([5, 12, 64])
-
-        print("time_embed:", time_embed.shape)
-        print("x:", x.shape)
-
-        # time_embed: torch.Size([5, 12, 64])
-        # x: torch.Size([5, 12, 100, 64])
-
 
         # time_embed: torch.Size([2, 12, 64])
         # x: torch.Size([24, 4096, 64])
@@ -837,14 +828,10 @@ class TConvFormer(nn.Module):
         time_embed = time_embed.to(x.device)
         x = x + time_embed
 
-
         x = x_sp.reshape(
             x_sp.shape[0] * T, x_sp.shape[2], x_sp.shape[-2], x_sp.shape[-1]
         )
         out_feats = [x]
-
-
-
 
         # blocks
         for block in self.blocks:

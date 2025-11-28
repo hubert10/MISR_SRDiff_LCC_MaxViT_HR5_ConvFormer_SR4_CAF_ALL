@@ -5,8 +5,8 @@ import numpy as np
 try:
     DATA_DIR = os.environ["DATA_DIR"] + "/"
 except Exception:
-    DATA_DIR = "D:\kanyamahanga\Datasets"
-    # DATA_DIR = "/mydata"
+    # DATA_DIR = "D:\kanyamahanga\Datasets"
+    DATA_DIR = "/mydata"
 
 
 def read_patch(raster_file: str, channels: list = None) -> np.ndarray:

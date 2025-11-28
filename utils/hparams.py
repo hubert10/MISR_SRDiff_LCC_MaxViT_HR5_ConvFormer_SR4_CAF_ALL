@@ -124,11 +124,8 @@ def set_hparams(
         return combined_config
 
     saved_hparams = {}
-    print("777777777777777777777777777777777:", args.config_file)
     hparams.update(load_config(args.config_file))
     args_work_dir = hparams["paths"]["out_folder"]
-    print(hparams["paths"])
-    print(args_work_dir)
 
     if args.exp_name != "":
         args_work_dir = str(args_work_dir) + f"checkpoints/{args.exp_name}"

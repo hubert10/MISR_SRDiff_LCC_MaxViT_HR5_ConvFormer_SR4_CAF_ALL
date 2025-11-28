@@ -12,15 +12,6 @@ from data.utils_data.sentinel import (
     filter_time_series,
     temporal_average,
 )
-import os
-import torch
-import json
-import rasterio
-import datetime
-import numpy as np
-import pandas as pd
-import torch.nn as nn
-from utils import utils_dataset
 from torch.utils.data import Dataset
 import torchvision.transforms as T
 import torch.nn.functional as F

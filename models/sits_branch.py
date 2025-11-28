@@ -90,10 +90,10 @@ class SITSSegmenter(nn.Module):
         h, w = x.size()[-2:]
         res0, res1, res2, res3 = self.backbone(x, batch_positions)
 
-        print("res0:", res0.shape)
-        print("res1:", res1.shape)
-        print("res2:", res2.shape)
-        print("res3:", res3.shape)
+        # print("res0:", res0.shape)
+        # print("res1:", res1.shape)
+        # print("res2:", res2.shape)
+        # print("res3:", res3.shape)
 
         sits_logits, cls_sits_feats, multi_lvls_cls = self.decode_head(
             res0, res1, res2, res3, h, w

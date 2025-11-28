@@ -18,4 +18,4 @@ conda activate flair_venv
 which python
 cd $HOME/MISR_SRDiff_LCC_MaxViT_HR5_ConvFormer_SR4_CAF_ALL
 # srun python trainer.py --config configs/diffsr_highresnet_ltae.yaml --config_file flair-config-server.yml --exp_name misr/srdiff_highresnet_ltae_ckpt --hparams="cond_net_ckpt=/bigwork/nhgnkany/Results/MISR_SRDiff_LCC_MaxViT_HR5_ConvFormer_SR4_CAF_ALL/results/checkpoints/misr/highresnet_ltae_ckpt" --reset
-srun python trainer.py --config configs/diffsr_highresnet_ltae.yaml --config_file flair-config-server.yml --exp_name misr/srdiff_highresnet_ltae_ckpt --hparams="cond_net_ckpt=/bigwork/nhgnkany/pretrain_weights/MISR_JOINT_SRDiff_HIGHRESNET_PRETRAINED/results/checkpoints/misr/highresnet_ltae_ckpt" --reset
+srun python trainer.py  --config_file==./configs/train_main/ --exp_name misr/srdiff_highresnet_ltae_ckpt --hparams="cond_net_ckpt=/bigwork/nhgnkany/pretrain_weights/MISR_JOINT_SRDiff_HIGHRESNET_PRETRAINED/results/checkpoints/misr/highresnet_ltae_ckpt" --reset

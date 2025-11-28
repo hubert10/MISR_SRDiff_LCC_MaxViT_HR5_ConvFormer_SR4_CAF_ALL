@@ -223,15 +223,15 @@ def gray_value_consistency_loss(
           and spatial dimensions.
     """
 
-    print("img_sr:", img_sr.shape)
-    print("img_lr:", img_lr.shape)
+    # print("img_sr:", img_sr.shape)
+    # print("img_lr:", img_lr.shape)
 
     # Downsample the SR-SITS from 1.6m to 10m before loss computation
     downsampled_sr = [downsample_sr_image(img_sr[:, i]) for i in range(img_sr.shape[1])]
     img_sr = torch.stack(downsampled_sr, dim=1)
 
-    print("img_sr:", img_sr.shape)
-    print("img_lr:", img_lr.shape)
+    # print("img_sr:", img_sr.shape)
+    # print("img_lr:", img_lr.shape)
 
     # Ensure shapes match
     assert (
