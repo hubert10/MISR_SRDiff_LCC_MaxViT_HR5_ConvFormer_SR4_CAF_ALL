@@ -60,7 +60,6 @@ def pad_collate_flair(sample_dict, pad_value=0):
     batch = {}
 
     for key in sample_dict[0].keys():
-        print("key:", key)
         if key in TO_PAD_KEYS:
             data = [i[key] for i in sample_dict]
 
@@ -82,7 +81,6 @@ def pad_collate_flair(sample_dict, pad_value=0):
             batch[key] = torch.stack(padded_data, dim=0)
 
         elif isinstance(sample_dict[0][key], torch.Tensor):
-            print("key isinstance:", key)
             batch[key] = torch.stack([i[key] for i in sample_dict], dim=0)
         else:
             batch[key] = [i[key] for i in sample_dict]
