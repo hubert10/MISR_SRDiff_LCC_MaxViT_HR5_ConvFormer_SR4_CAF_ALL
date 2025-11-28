@@ -20,7 +20,7 @@ try:
     DATA_DIR = os.environ["DATA_DIR"] + "/"
 except Exception:
     DATA_DIR = "D:\kanyamahanga\Datasets"
-    # DATA_DIR = "/mydata"
+    # DATA_DIR = "/my_data"
 
 
 def load_data(config: dict, val_percent=0.8):

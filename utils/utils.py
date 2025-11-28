@@ -31,7 +31,7 @@ try:
     DATA_DIR = os.environ["DATA_DIR"] + "/"
 except Exception:
     DATA_DIR = "D:\kanyamahanga\Datasets"
-    # DATA_DIR = "/mydata"
+    # DATA_DIR = "/my_data"
 
 
 sys.path.insert(0, "../")

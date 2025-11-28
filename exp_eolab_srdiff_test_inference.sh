@@ -14,9 +14,9 @@
 # source load_modules.sh
 
 export CONDA_ENVS_PATH=$HOME/.conda/envs
-DATA_DIR="/mydata/"
+DATA_DIR="/my_data/"
 export DATA_DIR
 source /home/eouser/flair_venv/bin activate
 which python
 cd $HOME/exp_2026/MISR_SRDiff_LCC_MaxViT_HR5_ConvFormer_SR4_CAF_ALL
-python trainer.py --config configs/diffsr_highresnet_ltae.yaml --config_file flair-config-server-eolab.yml --exp_name misr/srdiff_highresnet_ltae_ckpt --hparams="cond_net_ckpt=/mydata/Results/MISR_SRDiff_LCC_MaxViT_HR5_ConvFormer_SR4_CAF_ALL/results/checkpoints/misr/srdiff_highresnet_ltae_ckpt" --infer
+python trainer.py --config configs/diffsr_highresnet_ltae.yaml --config_file flair-config-server-eolab.yml --exp_name misr/srdiff_highresnet_ltae_ckpt --hparams="cond_net_ckpt=/my_data/Results/MISR_SRDiff_LCC_MaxViT_HR5_ConvFormer_SR4_CAF_ALL/results/checkpoints/misr/srdiff_highresnet_ltae_ckpt" --infer
