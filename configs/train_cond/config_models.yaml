@@ -1,0 +1,86 @@
+models: 
+    monotemp_model: 
+        arch: 'swin_base_patch4_window12_384-upernet' 
+        new_channels_init_mode: 'random' # [copy_first / copy_second / copy_third / random]
+
+    t_convformer:    
+
+        # Fusion
+        sr_patch_size: 64
+
+        loss_weights_aer_sat: [0.7, 0.3]
+        loss_aux_sat_weight: 1.0
+        loss_main_sat_weight: 1.0
+
+        # MTD and AUG
+        use_metadata: True
+        geo_enc_size: 32
+        use_augmentation: True
+        sen_temp_reduc: "mean" # ["mean", "median"]
+        val_percent: 0.9
+        # Sentinel Time Series filtering
+        filter_clouds: True
+        average_month: True
+
+        # Inputs
+        num_classes: 19
+        num_channels_aer: 5 
+        num_channels_sat: 4 
+        nbts: 3 # 1: 12 images, 2: 6 images, 3: 4 images, 4: 3 images, 6: 2 images
+        sr_scale: 6.25 # 6.25 for 20 cm GSD to 1.6 m GSD, 10 for 20 cm GSD to 2 m GSD
+        sat_reflectance_train: 2_000 
+        sat_reflectance_infer: 2_000 
+
+        ref_year: 2021 # defined for whole dataset
+        ref_date: 05-15 # defined for whole dataset
+        pad_value: 0
+        padding_mode: reflect
+
+        # sits Model
+        out_conv: [32, 19]
+        str_conv_k: 4
+        str_conv_s: 2
+        str_conv_p: 1
+        agg_mode: att_group
+        encoder_norm: group
+        n_head: 16
+        d_model: 256
+        d_k: 4
+        ref_year: 2021 # defined for whole dataset
+        ref_date: 05-15 # defined for whole dataset
+        pad_value: 0
+        padding_mode: reflect
+
+        # Swin-Conv Model
+        img_size: 64
+        decoder_channels: 256 
+        dropout: 0.2
+        window_size: 8 
+        weight_decay: 0.00025 # 2.5e-4
+        backbone_lr: 0.00006 # 6e-5
+        backbone_weight_decay: 0.00025 # 2.5e-4
+
+        embed_dim: 64 # 96 transformer latent vector size
+        uper_head_dim: 512  # decoder internal dimension - default=512
+        depths: [2, 2, 6] # , 2] # SwinTransformer Depth. No. of transformer layers per SwinTransformerBlock. Should be min. 2 for 1)Window-MSA and 2)ShiftedWindow-MSA!
+        num_heads: [2, 4, 8] # , 16] # [3, 6, 12, 24] # No. of parallel MSA-Heads per SwinTransformerBlock
+        mlp_ratio: 4.0
+        pool_scales: (1, 2, 3) #, 5) # (1, 2, 3, 6) the reason here is that our images are too small 40X40
+        # Spatial Feature Extraction
+        spa_temp_att: "separate-st" # ["full-st", "only-temp", "separate-st"] # "full-st", ---> full-spa-temp-att, "temp" ---> only-temp, "separate-st"
+        conv_spa_att: True # IF True use conv att instead of self-attention
+
+        # Computation
+        accelerator: gpu
+        gpus_per_node: 1
+        num_nodes: 1
+        strategy: auto # ddp # ddp if multi-gpu
+        # The "auto" option recognizes the machine you are on, and selects the appropriate Accelerator.
+
+        # Training and evaluation
+        mode: "train" # ["train", "eval" ]
+        norm_type: "scale" # ["scale", "min-max", "mean-std"]
+        sits_temp_merging: "mean" # ["mean", "sum"]
+
+        resume: False
+        debug: True
