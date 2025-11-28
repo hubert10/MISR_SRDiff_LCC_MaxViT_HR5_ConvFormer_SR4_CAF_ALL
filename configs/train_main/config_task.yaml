@@ -1,13 +1,13 @@
 # SLURM
 
 paths :   
-    out_folder: "/bigwork/nhgnkany/Results/MISR_SRDiff_LCC_MaxViT_HR5_ConvFormer_SR4_CAF_ALL/results/"
+    out_folder: "/my_data/Results/MISR_SRDiff_LCC_MaxViT_HR5_ConvFormer_SR4_CAF_ALL/results/"
     out_model_name: "misr-s2-aer-seg"
 
-    train_csv: /bigwork/nhgnkany/FLAIR_HUB/ALL_CSV/FLAIR_HUB_TRAIN.csv
-    val_csv: /bigwork/nhgnkany/FLAIR_HUB/ALL_CSV/FLAIR_HUB_VALID.csv
-    test_csv: /bigwork/nhgnkany/FLAIR_HUB/ALL_CSV/FLAIR_HUB_TEST.csv
-    global_mtd_folder: /bigwork/nhgnkany/FLAIR_HUB/GLOBAL_ALL_MTD/
+    train_csv: /my_data/FLAIR_HUB/ALL_CSV/FLAIR_HUB_TRAIN.csv
+    val_csv: /my_data/nhgnkany/FLAIR_HUB/ALL_CSV/FLAIR_HUB_VALID.csv
+    test_csv: /my_data/nhgnkany/FLAIR_HUB/ALL_CSV/FLAIR_HUB_TEST.csv
+    global_mtd_folder: /my_data/nhgnkany/FLAIR_HUB/GLOBAL_ALL_MTD/
     ckpt_model_path: 
 
 
