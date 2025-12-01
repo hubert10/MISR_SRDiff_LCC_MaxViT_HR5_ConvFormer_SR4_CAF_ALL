@@ -19,4 +19,4 @@ export DATA_DIR
 source /home/eouser/flair_venv/bin activate
 which python
 cd $HOME/exp_2026/MISR_SRDiff_LCC_MaxViT_HR5_ConvFormer_SR4_CAF_ALL
-python trainer.py --config configs/diffsr_highresnet_ltae.yaml --config_file flair-config-server-eolab.yml --exp_name misr/srdiff_highresnet_ltae_ckpt --hparams="cond_net_ckpt=/my_data/Results/MISR_SRDiff_LCC_MaxViT_HR5_ConvFormer_SR4_CAF_ALL/results/checkpoints/misr/srdiff_highresnet_ltae_ckpt" --infer
+python trainer.py --config_file=./configs/train_main/ --exp_name misr/srdiff_highresnet_ltae_ckpt --hparams="cond_net_ckpt=/my_data/pretrain_weights/MISR_JOINT_SRDiff_HIGHRESNET_PRETRAINED/results/checkpoints/misr/srdiff_highresnet_ltae_ckpt" --infer
